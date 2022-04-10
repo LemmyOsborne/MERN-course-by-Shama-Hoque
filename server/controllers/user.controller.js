@@ -1,6 +1,5 @@
-import User from "models/user.model"
+import User from "../models/user.model"
 import extend from "lodash/extend"
-import errorHandler from "./error.controller"
 
 const create = async (req, res) => {
     const user = new User(req.body)
@@ -11,7 +10,7 @@ const create = async (req, res) => {
         })
     } catch (err) {
         return res.status("400").json({
-            error: errorHandler.getErrorMessage(err)
+            error: "Something went wrong."
         })
     }
 }
@@ -22,7 +21,7 @@ const list = async (_, res) => {
         res.json(users)
     } catch (err) {
         return res.status("400").json({
-            error: errorHandler.getErrorMessage(err)
+            error: "Something went wrong."
         })
     }
 }
@@ -50,7 +49,7 @@ const read = (req, res) => {
     return res.json(req.profile)
 }
 
-const update = (req, res) => {
+const update = async (req, res) => {
     try {
         let user = req.profile
         user = extend(user, req.body)
@@ -61,7 +60,7 @@ const update = (req, res) => {
         res.json(user)
     } catch (err) {
         return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
+            error: "Something went wrong."
         })
     }
 }
@@ -75,7 +74,7 @@ const remove = async (req, res) => {
         res.json(deletedUser)
     } catch (err) {
         return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
+            error: "Something went wrong."
         })
     }
 }
