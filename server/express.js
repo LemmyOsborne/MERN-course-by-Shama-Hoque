@@ -5,6 +5,7 @@ import express from "express"
 import helmet from "helmet"
 import cors from "cors"
 import userRoutes from "./routes/user.routes"
+import authRoutes from "./routes/auth,routes"
 
 
 const app = express()
@@ -17,5 +18,6 @@ app.use(helmet())
 app.use(cors())
 
 app.use("/", userRoutes)
+app.use("/", authRoutes)
 
 export default app
